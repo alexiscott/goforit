@@ -1,0 +1,4 @@
+#+title: Boot
+
+Booty is a quick way of getting a project that can easily build for
+the browser up and running. It's basically [[https://webpack.js.org/guides/getting-started][Webpack's quickstart guide.]]
