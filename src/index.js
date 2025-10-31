@@ -1,36 +1,41 @@
-const columns = document.querySelectorAll(".task-column");
+const questions = document.querySelectorAll(".question");
+const answers = document.querySelectorAll(".answer");
 
-columns.forEach((column) => {
-  column.addEventListener("dragover", (event) => {
+answers.forEach((answer) => {
+  answer.addEventListener("dragover", (event) => {
     // Test a custom type we will set later
-    if (event.dataTransfer.types.includes("task")) {
+    if (event.dataTransfer.types.includes("question")) {
       event.preventDefault();
     }
   });
 });
 
-const tasks = document.querySelectorAll(".task");
+console.log("questions", questions);
+console.log("answers", answers);
 
-tasks.forEach((task) => {
-  task.addEventListener("dragstart", (event) => {
-    task.id = "dragged-task";
+
+questions.forEach((question) => {
+  question.addEventListener("dragstart", (event) => {
+    question.id = "dragged-question";
     event.dataTransfer.effectAllowed = "move";
-    // Custom type to identify a task drag
-    event.dataTransfer.setData("task", "");
+    // Custom type to identify a question drag
+      event.dataTransfer.setData("question", "");
+      console.log("Dragging a question");
   });
 
-  task.addEventListener("dragend", (event) => {
-    task.removeAttribute("id");
+  question.addEventListener("dragend", (event) => {
+    question.removeAttribute("id");
   });
 });
 
 
-columns.forEach((column) => {
-  column.addEventListener("drop", (event) => {
+answers.forEach((answer) => {
+  answer.addEventListener("drop", (event) => {
     event.preventDefault();
 
-    const draggedTask = document.getElementById("dragged-task");
-    draggedTask.remove();
-    column.children[1].appendChild(draggedTask);
+    const draggedTask = document.getElementById("dragged-question");
+    // draggedTask.remove();
+      // answer.children[1].appendChild(draggedTask);
+      console.log("DraggedTask", draggedTask);
   });
 });
